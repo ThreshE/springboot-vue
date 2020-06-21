@@ -115,6 +115,11 @@
             <artifactId>shiro-web</artifactId>
             <version>1.4.0-RC2</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0-RC2</version>
+        </dependency>
     </dependencies>
 
     <build>

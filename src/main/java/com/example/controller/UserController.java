@@ -37,6 +37,16 @@ public class UserController {
         return Result.succ(user);
     }
 
+    /**
+     * 测试实体校验
+     * @param user
+     * @return
+     */
+    @PostMapping("/testuser")
+    public Object testUser(@Validated @RequestBody User user) {
+        return user.toString();
+    }
+
     @GetMapping("/{id}")
     public Object test(@PathVariable("id") Long id) {
         return userService.getById(id);

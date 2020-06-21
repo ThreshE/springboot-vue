@@ -47,10 +47,18 @@ public class JwtUtils {
                     .setSigningKey(secret)
                     .parseClaimsJws(token)
                     .getBody();
-        } catch (Exception e) {e
+        } catch (Exception e) {
             log.debug("validate is token error ", e);
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * token是否过期
+     * @return  true：过期
+     */
+    public boolean isTokenExpired(Date expiration) {
+        return expiration.before(new Date());
     }
 }
