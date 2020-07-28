@@ -12,7 +12,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @author 关注公众号：MarkerHub
  * @since 2020-06-15
  */
-@Mapper
 public interface BlogMapper extends BaseMapper<Blog> {
 
 }

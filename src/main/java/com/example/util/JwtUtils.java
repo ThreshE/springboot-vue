@@ -17,7 +17,7 @@ import java.util.Date;
 @Slf4j
 @Data
 @Component
-@ConfigurationProperties(prefix = "markerhub.jwt")
+@ConfigurationProperties(prefix = "example.jwt")
 public class JwtUtils {
 
     private String secret;

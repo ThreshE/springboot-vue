@@ -34,8 +34,8 @@ import java.util.Map;
 @Configuration
 public class ShiroConfig {
 
-    @Autowired
-    JwtFilter jwtFilter;
+    /*@Autowired
+    JwtFilter jwtFilter;*/
 
     @Bean
     public SessionManager sessionManager (RedisSessionDAO redisSessionDAO){
@@ -75,7 +75,7 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
         Map<String, Filter> filters = new HashMap<>();
-        filters.put("jwt", jwtFilter);
+        filters.put("jwt", new JwtFilter());
         shiroFilter.setFilters(filters);
         Map<String, String> filterMap = shiroFilterChainDefinition.getFilterChainMap();
         shiroFilter.setFilterChainDefinitionMap(filterMap);

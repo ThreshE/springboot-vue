@@ -28,7 +28,7 @@ import java.util.logging.Filter;
  * @author:Peter
  * @date:2020/6/16 16:37
  **/
-@Component
+//@Component
 public class JwtFilter extends AuthenticatingFilter {
 
     @Autowired
