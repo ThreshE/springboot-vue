@@ -21,11 +21,8 @@ import java.util.Date;
 @ConfigurationProperties(prefix = "example.jwt")
 public class JwtUtils {
 
-    @Value("${markerhub.jwt.secret}")
     private String secret;
-    @Value("${markerhub.jwt.expire}")
     private long expire;
-    @Value("${markerhub.jwt.header}")
     private String header;
 
     /**
