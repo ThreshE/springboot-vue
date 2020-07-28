@@ -14,4 +14,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 public interface BlogMapper extends BaseMapper<Blog> {
 
+    //测试自定义 SQL
+    public void deletetest();
+
 }

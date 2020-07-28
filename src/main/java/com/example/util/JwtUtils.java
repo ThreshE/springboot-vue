@@ -3,6 +3,7 @@ package com.example.util;
 import io.jsonwebtoken.*;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +21,11 @@ import java.util.Date;
 @ConfigurationProperties(prefix = "example.jwt")
 public class JwtUtils {
 
+    @Value("${markerhub.jwt.secret}")
     private String secret;
+    @Value("${markerhub.jwt.expire}")
     private long expire;
+    @Value("${markerhub.jwt.header}")
     private String header;
 
     /**

@@ -66,4 +66,10 @@ public class BlogController {
         return Result.succ(200,"操作成功", null);
     }
 
+    @GetMapping("/blog/delete")
+    public Result delete(){
+        blogService.deleteon();
+        return Result.succ(200,"删除成功",null);
+    }
+
 }

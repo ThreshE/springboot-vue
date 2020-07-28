@@ -4,6 +4,7 @@ import com.example.entity.Blog;
 import com.example.mapper.BlogMapper;
 import com.example.service.BlogService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -17,4 +18,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements BlogService {
 
+    @Autowired
+    BlogMapper blogMapper;
+
+    @Override
+    public void deleteon(){
+        blogMapper.deletetest();
+    }
 }
