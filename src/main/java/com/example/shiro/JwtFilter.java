@@ -12,9 +12,11 @@ import org.apache.shiro.web.filter.authc.AuthenticatingFilter;
 import org.apache.shiro.web.filter.authc.BasicHttpAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -28,12 +30,19 @@ import java.util.logging.Filter;
  * @author:Peter
  * @date:2020/6/16 16:37
  **/
-//@Component
+@Component
 public class JwtFilter extends AuthenticatingFilter {
 
     @Autowired
-    JwtUtils jwtUtils;
+    private JwtUtils jwtUtils;
 
+    private static JwtFilter jwtFilter;
+
+    @PostConstruct
+    public void init(){
+        jwtFilter = this;
+        jwtFilter.jwtUtils = this.jwtUtils;
+    }
 
     @Override
     protected AuthenticationToken createToken(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
@@ -54,8 +63,8 @@ public class JwtFilter extends AuthenticatingFilter {
             return true;
         } else {
             // 判断是否已过期
-            Claims claim = jwtUtils.getClaimByToken(token);
-            if(claim == null || jwtUtils.isTokenExpired(claim.getExpiration())) {
+            Claims claim = jwtFilter.jwtUtils.getClaimByToken(token);
+            if(claim == null || jwtFilter.jwtUtils.isTokenExpired(claim.getExpiration())) {
                 throw new ExpiredCredentialsException("token已失效，请重新登录！");
             }
         }

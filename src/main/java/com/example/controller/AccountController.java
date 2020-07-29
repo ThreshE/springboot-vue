@@ -11,6 +11,7 @@ import com.example.service.UserService;
 import com.example.util.JwtUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -58,7 +59,22 @@ public class AccountController {
     @GetMapping("/logout")
     @RequiresAuthentication
     public Result logout() {
-        SecurityUtils.getSubject().logout();
+        try {
+            new Thread() {
+                @Override
+                public void run() {
+                    Subject subject = SecurityUtils.getSubject();
+                    try {
+                        sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    subject.logout();
+                }
+            }.run();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
         return Result.succ(null);
     }
 }
